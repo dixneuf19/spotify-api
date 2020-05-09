@@ -9,7 +9,7 @@ def dict_to_track(obj: Dict[str,Any]) -> Track:
             album=dict_to_album(obj["album"]),
             artists=[dict_to_artist(art) for art in obj["artists"]],
             duration_ms=obj["duration_ms"],
-            _id=obj["id"],
+            id=obj["id"],
             preview_url=obj["preview_url"],
             uri=obj["uri"],
             name=obj["name"],
@@ -28,7 +28,7 @@ def dict_to_image(obj: Dict[str,Any]) -> Image:
 def dict_to_album(obj: Dict[str,Any]) -> Album:
     try:
         return Album(
-            _id=obj["id"],
+            id=obj["id"],
             images=[dict_to_image(img) for img in obj["images"]],
             href=obj["href"],
             name=obj["name"],
@@ -42,7 +42,7 @@ def dict_to_album(obj: Dict[str,Any]) -> Album:
 def dict_to_artist(obj: Dict[str,Any]) -> Artist:
     try:
         return Artist(
-            _id=obj["id"], href=obj["href"], name=obj["name"], uri=obj["uri"],
+            id=obj["id"], href=obj["href"], name=obj["name"], uri=obj["uri"],
         )
     except KeyError:
         return None

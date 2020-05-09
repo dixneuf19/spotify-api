@@ -19,7 +19,7 @@ class Image:
 
 @dataclass
 class Album:
-    _id: str
+    id: str
     images: List[Image]
     href: str
     name: str
@@ -29,7 +29,7 @@ class Album:
 
 @dataclass
 class Artist:
-    _id: str
+    id: str
     href: str
     name: str
     uri: str
@@ -40,7 +40,7 @@ class Track:
     album: Album
     artists: List[Artist]
     duration_ms: int
-    _id: str
+    id: str
     preview_url: str
     uri: str
     name: str
