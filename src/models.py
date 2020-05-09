@@ -43,3 +43,4 @@ class Track:
     _id: str
     preview_url: str
     uri: str
+    name: str

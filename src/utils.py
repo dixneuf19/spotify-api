@@ -12,6 +12,7 @@ def dict_to_track(obj: Dict[str,Any]) -> Track:
             _id=obj["id"],
             preview_url=obj["preview_url"],
             uri=obj["uri"],
+            name=obj["name"],
         )
     except KeyError:
         return None
