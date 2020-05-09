@@ -2,7 +2,7 @@
 
 DOCKER_REPOSITERY=dixneuf19
 IMAGE_NAME=spotify-api
-IMAGE_TAG=latest
+IMAGE_TAG=$(shell git rev-parse --short HEAD)
 DOCKER_IMAGE_PATH=$(DOCKER_REPOSITERY)/$(IMAGE_NAME):$(IMAGE_TAG)
 APP_NAME=spotify-api
 
