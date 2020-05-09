@@ -16,7 +16,7 @@ spec:
         envFrom:
         - secretRef:
             name: spotify-api-access
-        image: dixneuf19/whatsonfip:latest
+        image: dixneuf19/spotify-api:latest
         resources:
           limits:
             memory: "128Mi"
