@@ -23,4 +23,9 @@ app = FastAPI()
 @app.get("/search")
 def search(q: str) -> Track:
     res = sp.search(q, limit=1, offset=0, type="track")
-    return dict_to_track(res["tracks"]["items"][0])
+    if len(res["tracks"]["items"]) > 0:
+        return dict_to_track(res["tracks"]["items"][0])
+        
+    return JSONResponse(
+            content=jsonable_encoder({}), status_code=status.HTTP_404_NOT_FOUND
+        )
