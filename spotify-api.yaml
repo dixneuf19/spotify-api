@@ -13,17 +13,9 @@ spec:
     spec:
       containers:
       - name: spotify-api
-        env:
-        - name: SPOTIFY_CLIENT_ID
-          valueFrom:
-              secretKeyRef:
-                key: spotify-client-id
-                name: spotify-api-access
-        - name: SPOTIFY_CLIENT_SECRET
-          valueFrom:
-              secretKeyRef:
-                key: spotify-client-secret
-                name: spotify-api-access
+        envFrom:
+        - secretRef:
+            name: spotify-api-access
         image: dixneuf19/whatsonfip:latest
         resources:
           limits:
