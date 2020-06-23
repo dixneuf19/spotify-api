@@ -12,6 +12,9 @@ dev:
 build:
 	docker build -t $(DOCKER_IMAGE_PATH) .
 
+build-multi:
+	docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/arm/v7 -t $(DOCKER_IMAGE_PATH) .
+
 run:
 	docker run -p 8000:80 --env-file=.env $(DOCKER_IMAGE_PATH)
 
