@@ -1,0 +1,100 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  DOCKER_REPOSITERY: dixneuf19
+  IMAGE_NAME: spotify-api
+  TARGET_PLATFORMS: linux/amd64,linux/386,linux/arm64,linux/arm/v7
+  HELM_RELEASE_NAME: spotify-api
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-20.04
+    steps:
+      # Get the repositery's code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v2
+        with: # in production, fix the version of your dependencies
+          buildx-version: latest
+          skip-cache: false
+          qemu-version: latest
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      # Build the images
+      - name: Run Buildx
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform  "$TARGET_PLATFORMS" \
+            --output "type=image,push=false" \
+            -t $DOCKER_REPOSITERY/$IMAGE_NAME:${GITHUB_SHA::7} \
+            .
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "$DOCKER_REPOSITERY" --password-stdin
+
+      # Build the images
+      - name: Run Buildx
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform  "$TARGET_PLATFORMS" \
+            --output "type=image,push=true" \
+            -t $DOCKER_REPOSITERY/$IMAGE_NAME:${GITHUB_SHA::7} \
+            .
+
+      - name: Docker Check Manifest
+        run: |
+          docker run --rm mplatform/mquery $DOCKER_REPOSITERY/$IMAGE_NAME:${GITHUB_SHA::7}
+
+      - name: Clear Docker credentials
+        if: always()
+        run: |
+          rm -f ${HOME}/.docker/config.json
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs:
+      - build_and_release
+    steps:
+      # Get the repositery's code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # set up kubectl
+      - uses: azure/setup-kubectl@v1
+        with:
+          version: "v1.18.4" # default is latest stable
+
+      # Configure kubectl.
+      - name: Configure kubectl
+        run: echo "${{ secrets.KUBE_CONFIG_B64 }}" | base64 --decode > kubeconfig.yml
+
+      - uses: azure/setup-helm@v1
+        with:
+          version: "v3.2.0" # default is latest stable
+
+      # deploy helm release
+      - name: Deploy Helm release
+        run: |
+          helm upgrade --kubeconfig kubeconfig.yml --wait -i $HELM_RELEASE_NAME kubernetes/ --set container.image.tag=${GITHUB_SHA::7}
