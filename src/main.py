@@ -21,7 +21,7 @@ app = FastAPI()
 
 
 @app.get("/search")
-def search(q: str) -> Track:
+async def search(q: str) -> Track:
     res = sp.search(q, limit=1, offset=0, type="track")
     if len(res["tracks"]["items"]) > 0:
         return dict_to_track(res["tracks"]["items"][0])
@@ -29,3 +29,7 @@ def search(q: str) -> Track:
     return JSONResponse(
             content=jsonable_encoder({}), status_code=status.HTTP_404_NOT_FOUND
         )
+
+@app.get("/health")
+async def get_health():
+    return {"message": "OK"}
