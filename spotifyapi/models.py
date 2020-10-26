@@ -3,16 +3,19 @@ from dataclasses import dataclass
 
 from pydantic import BaseModel
 
+
 class SimpleSong(BaseModel):
     title: str
     album: str
     artist: str
     year: int
 
+
 class Image(BaseModel):
     height: int
     url: str
     width: int
+
 
 class Album(BaseModel):
     id: str

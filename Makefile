@@ -7,7 +7,16 @@ DOCKER_IMAGE_PATH=$(DOCKER_REPOSITERY)/$(IMAGE_NAME):$(IMAGE_TAG)
 APP_NAME=spotify-api
 
 dev:
-	uvicorn src.main:app --reload
+	uvicorn spotifyapi.main:app --reload
+
+format:
+	black .
+
+check-format:
+	black --check .
+
+test:
+	PYTHONPATH=. pytest tests
 
 build:
 	docker build -t $(DOCKER_IMAGE_PATH) .
@@ -15,7 +24,7 @@ build:
 build-multi:
 	docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/arm/v7 -t $(DOCKER_IMAGE_PATH) .
 
-run:
+run: build
 	docker run -p 8000:80 --env-file=.env $(DOCKER_IMAGE_PATH)
 
 push:
