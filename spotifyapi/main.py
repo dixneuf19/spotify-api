@@ -38,7 +38,7 @@ async def search(
 ) -> Track:
     res = sp.search(query, limit=1, offset=0, type="track")
     if len(res["tracks"]["items"]) > 0:
-        return es["tracks"]["items"][0]
+        return res["tracks"]["items"][0]
 
     return JSONResponse(
         content=jsonable_encoder({}), status_code=status.HTTP_404_NOT_FOUND

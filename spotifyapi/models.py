@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional, Dict
 from dataclasses import dataclass
 
 from pydantic import BaseModel
@@ -12,23 +12,25 @@ class SimpleSong(BaseModel):
 
 
 class Image(BaseModel):
-    height: int
+    height: Optional[int]
     url: str
-    width: int
+    width: Optional[int]
 
 
 class Album(BaseModel):
+    external_urls: Dict[str, str]
+    href: str
     id: str
     images: List[Image]
-    href: str
     name: str
     release_date: str
     uri: str
 
 
 class Artist(BaseModel):
-    id: str
+    external_urls: Dict[str, str]
     href: str
+    id: str
     name: str
     uri: str
 
@@ -37,7 +39,9 @@ class Track(BaseModel):
     album: Album
     artists: List[Artist]
     duration_ms: int
+    external_urls: Dict[str, str]
+    href: str
     id: str
-    preview_url: str
-    uri: str
     name: str
+    preview_url: Optional[str]
+    uri: str
