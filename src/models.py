@@ -1,24 +1,20 @@
 from typing import List
 from dataclasses import dataclass
 
+from pydantic import BaseModel
 
-@dataclass
-class SimpleSong:
+class SimpleSong(BaseModel):
     title: str
     album: str
     artist: str
     year: int
 
-
-@dataclass
-class Image:
+class Image(BaseModel):
     height: int
     url: str
     width: int
 
-
-@dataclass
-class Album:
+class Album(BaseModel):
     id: str
     images: List[Image]
     href: str
@@ -27,16 +23,14 @@ class Album:
     uri: str
 
 
-@dataclass
-class Artist:
+class Artist(BaseModel):
     id: str
     href: str
     name: str
     uri: str
 
 
-@dataclass
-class Track:
+class Track(BaseModel):
     album: Album
     artists: List[Artist]
     duration_ms: int

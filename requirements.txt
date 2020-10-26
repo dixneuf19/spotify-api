@@ -1,5 +1,4 @@
-fastapi==0.54.1
-gql==0.4.0
-uvicorn==0.11.7
-python-dotenv==0.13.0
+fastapi==0.61.1
+uvicorn==0.12.2
+python-dotenv==0.14.0
 spotipy==2.12.0
