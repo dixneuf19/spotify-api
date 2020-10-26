@@ -1,0 +1,40 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: dixneuf19/whatsonfip
+  tag: latest
+  pullPolicy: Always
+
+container:
+  port: 80
+  probe:
+    liveness:
+      path: /health
+    readiness:
+      path: /health
+
+resources:
+  limits:
+    memory: '128Mi'
+    cpu: '300m'
+  requests:
+    memory: '64Mi'
+    cpu: '100m'
+
+service:
+  type: ClusterIP
+  port: 1919
+
+ingress:
+  enabled: false
+
+configmap: {}
+
+secrets:
+  - name: spotify-api-access
+    key: SPOTIPY_CLIENT_ID
+  - name: spotify-api-access
+    key: SPOTIPY_CLIENT_SECRET
