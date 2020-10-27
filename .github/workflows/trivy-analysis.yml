@@ -7,7 +7,7 @@ on:
 
 env:
     DOCKER_REPOSITORY: dixneuf19
-    IMAGE_NAME: whatsonfip
+    IMAGE_NAME: spotify-api
 
 jobs:
   analysis:
