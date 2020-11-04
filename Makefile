@@ -5,6 +5,7 @@ IMAGE_NAME=spotify-api
 IMAGE_TAG=$(shell git rev-parse --short HEAD)
 DOCKER_IMAGE_PATH=$(DOCKER_REPOSITERY)/$(IMAGE_NAME):$(IMAGE_TAG)
 APP_NAME=spotify-api
+KUBE_NAMESPACE=fip
 
 dev:
 	uvicorn spotifyapi.main:app --reload
@@ -40,3 +41,6 @@ deploy:
 
 secret:
 	kubectl create secret generic spotify-api-access --from-env-file=.env
+
+kube-credentials:
+	NAMESPACE=${KUBE_NAMESPACE} ./scripts/generate-kubeconfig.sh
