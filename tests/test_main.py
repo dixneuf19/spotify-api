@@ -105,6 +105,27 @@ queries_responses = {
     },
 }
 
+simple_queries_responses = {
+    "logical song supertramp": {
+        "album": "Breakfast In America (Deluxe Edition)",
+        "year": 1979,
+        "artist": "Supertramp",
+        "title": "The Logical Song - Remastered 2010",
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/6mHOcVtsHLMuesJkswc0GZ"
+        },
+    },
+    'album:"logical song" year:1979': {
+        "album": "The Logical Song",
+        "year": 1979,
+        "artist": "Supertramp",
+        "title": "The Logical Song",
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/4se2fj5uRWlkcnfhtnRLrZ"
+        },
+    },
+}
+
 
 def test_search_logical_song():
     response = client.get("/search", params={"q": "logical song supertramp"})
@@ -112,10 +133,26 @@ def test_search_logical_song():
     assert response.json() == queries_responses["logical song supertramp"]
 
 
+def test_search_logical_song_simple():
+    response = client.get(
+        "/search", params={"q": "logical song supertramp", "simple": True}
+    )
+    assert response.status_code == 200
+    assert response.json() == simple_queries_responses["logical song supertramp"]
+
+
 def test_search_with_filters():
     response = client.get("/search", params={"q": 'album:"logical song" year:1979'})
     assert response.status_code == 200
     assert response.json() == queries_responses['album:"logical song" year:1979']
+
+
+def test_search_with_filters_simple():
+    response = client.get(
+        "/search", params={"q": 'album:"logical song" year:1979', "simple": True}
+    )
+    assert response.status_code == 200
+    assert response.json() == simple_queries_responses['album:"logical song" year:1979']
 
 
 def test_search_with_wrong_param():

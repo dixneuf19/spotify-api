@@ -2,13 +2,15 @@ from typing import List, Optional, Dict
 from dataclasses import dataclass
 
 from pydantic import BaseModel
+from dateparser import parse as date_parse
 
 
-class SimpleSong(BaseModel):
+class SimpleTrack(BaseModel):
     title: str
     album: str
     artist: str
-    year: int
+    year: Optional[int]
+    external_urls: Dict[str, str] = {}
 
 
 class Image(BaseModel):
@@ -45,3 +47,13 @@ class Track(BaseModel):
     name: str
     preview_url: Optional[str]
     uri: str
+
+
+def convert_track_to_simple_track(track: Track) -> SimpleTrack:
+    return SimpleTrack(
+        title=track.name,
+        album=track.album.name,
+        artist=track.artists[0].name if len(track.artists) > 0 else "",
+        year=date_parse(track.album.release_date).year,
+        external_urls=track.external_urls,
+    )
