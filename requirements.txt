@@ -3,4 +3,4 @@ fastapi==0.63.0
 loguru==0.5.3
 python-dotenv==0.15.0
 spotipy==2.16.1
-uvicorn==0.13.2
+uvicorn==0.13.3
