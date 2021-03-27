@@ -2,5 +2,5 @@ dateparser==1.0.0
 fastapi==0.63.0
 loguru==0.5.3
 python-dotenv==0.16.0
-spotipy==2.16.1
+spotipy==2.17.1
 uvicorn==0.13.4
