@@ -1,6 +1,6 @@
 # Spotify API
 
-[![Build and release](https://github.com/dixneuf19/SpotifyAPI/workflows/Build%20and%20release/badge.svg)](https://github.com/dixneuf19/SpotifyAPI/actions?query=workflow%3A"Build+and+release") [![CodeQL](https://github.com/dixneuf19/SpotifyAPI/workflows/CodeQL/badge.svg)](https://github.com/dixneuf19/SpotifyAPI/actions?query=workflow%3ACodeQL)
+[![TestS](https://github.com/dixneuf19/SpotifyApi/actions/workflows/test.yaml/badge.svg)](https://github.com/dixneuf19/SpotifyApi/actions/workflows/test.yaml) [![CD](https://github.com/dixneuf19/SpotifyApi/actions/workflows/build-and-release.yaml/badge.svg)](https://github.com/dixneuf19/SpotifyApi/actions/workflows/build-and-release.yaml) [![CodeQL](https://github.com/dixneuf19/SpotifyApi/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/dixneuf19/SpotifyApi/actions/workflows/codeql-analysis.yml)
 
 
 Yet another wrapper around this API...
