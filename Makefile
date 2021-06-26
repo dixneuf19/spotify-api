@@ -7,13 +7,21 @@ DOCKER_IMAGE_PATH=$(DOCKER_REPOSITERY)/$(IMAGE_NAME):$(IMAGE_TAG)
 APP_NAME=spotify-api
 KUBE_NAMESPACE=fip
 
+install:
+	pip install -r requirements.txt
+
+install-dev: install
+	pip install -r requirements-dev.txt
+
 dev:
 	uvicorn spotifyapi.main:app --reload
 
 format:
+	isort --profile black .
 	black .
 
 check-format:
+	isort --profile black --check .
 	black --check .
 
 test:

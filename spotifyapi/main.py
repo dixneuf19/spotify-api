@@ -3,12 +3,12 @@ from typing import List, Union
 
 import spotipy
 from dotenv import load_dotenv
-from fastapi import FastAPI, status, Query
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, Query, status
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 from spotipy import SpotifyClientCredentials
 
-from spotifyapi.models import Track, SimpleTrack, convert_track_to_simple_track
+from spotifyapi.models import SimpleTrack, Track, convert_track_to_simple_track
 
 load_dotenv()
 
