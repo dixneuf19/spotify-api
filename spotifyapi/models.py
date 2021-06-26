@@ -1,8 +1,8 @@
-from typing import List, Optional, Dict
 from dataclasses import dataclass
+from typing import Dict, List, Optional
 
-from pydantic import BaseModel
 from dateparser import parse as date_parse
+from pydantic import BaseModel
 
 
 class SimpleTrack(BaseModel):
