@@ -1,5 +1,5 @@
 dateparser==1.0.0
-fastapi==0.68.0
+fastapi==0.68.1
 loguru==0.5.3
 python-dotenv==0.19.0
 spotipy==2.19.0
