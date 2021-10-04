@@ -1,4 +1,4 @@
-dateparser==1.0.0
+dateparser==1.1.0
 fastapi==0.68.1
 loguru==0.5.3
 python-dotenv==0.19.0
