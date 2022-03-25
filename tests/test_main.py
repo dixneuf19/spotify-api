@@ -57,30 +57,30 @@ queries_responses = {
     'album:"logical song" year:1979': {
         "album": {
             "external_urls": {
-                "spotify": "https://open.spotify.com/album/3177Kp9AUPavhSgNuS9kcG"
+                "spotify": "https://open.spotify.com/album/0qut6VWFY5AYVROlB3BdzZ"
             },
-            "href": "https://api.spotify.com/v1/albums/3177Kp9AUPavhSgNuS9kcG",
-            "id": "3177Kp9AUPavhSgNuS9kcG",
+            "href": "https://api.spotify.com/v1/albums/0qut6VWFY5AYVROlB3BdzZ",
+            "id": "0qut6VWFY5AYVROlB3BdzZ",
             "images": [
                 {
                     "height": 640,
-                    "url": "https://i.scdn.co/image/ab67616d0000b273eecf29e1fdf760a66c32c26b",
+                    "url": "https://i.scdn.co/image/ab67616d0000b2736cd022a1650af9d88f2499b4",
                     "width": 640,
                 },
                 {
                     "height": 300,
-                    "url": "https://i.scdn.co/image/ab67616d00001e02eecf29e1fdf760a66c32c26b",
+                    "url": "https://i.scdn.co/image/ab67616d00001e026cd022a1650af9d88f2499b4",
                     "width": 300,
                 },
                 {
                     "height": 64,
-                    "url": "https://i.scdn.co/image/ab67616d00004851eecf29e1fdf760a66c32c26b",
+                    "url": "https://i.scdn.co/image/ab67616d000048516cd022a1650af9d88f2499b4",
                     "width": 64,
                 },
             ],
             "name": "The Logical Song",
             "release_date": "1979-03-01",
-            "uri": "spotify:album:3177Kp9AUPavhSgNuS9kcG",
+            "uri": "spotify:album:0qut6VWFY5AYVROlB3BdzZ",
         },
         "artists": [
             {
@@ -95,13 +95,13 @@ queries_responses = {
         ],
         "duration_ms": 249731,
         "external_urls": {
-            "spotify": "https://open.spotify.com/track/4se2fj5uRWlkcnfhtnRLrZ"
+            "spotify": "https://open.spotify.com/track/5AsHmx17yMs3BRqga0eSby"
         },
-        "href": "https://api.spotify.com/v1/tracks/4se2fj5uRWlkcnfhtnRLrZ",
-        "id": "4se2fj5uRWlkcnfhtnRLrZ",
+        "href": "https://api.spotify.com/v1/tracks/5AsHmx17yMs3BRqga0eSby",
+        "id": "5AsHmx17yMs3BRqga0eSby",
         "name": "The Logical Song",
-        "preview_url": "https://p.scdn.co/mp3-preview/1b9ad99ec6d442157fa49a9c9d64be6cca2095e9?cid=e96e446ccf954386b7c25e97a6015728",
-        "uri": "spotify:track:4se2fj5uRWlkcnfhtnRLrZ",
+        "preview_url": "https://p.scdn.co/mp3-preview/aa7c3cc49f5b2b4b38062bb9bbe4dc4c1073cf76?cid=e96e446ccf954386b7c25e97a6015728",
+        "uri": "spotify:track:5AsHmx17yMs3BRqga0eSby",
     },
 }
 
@@ -121,7 +121,7 @@ simple_queries_responses = {
         "artist": "Supertramp",
         "title": "The Logical Song",
         "external_urls": {
-            "spotify": "https://open.spotify.com/track/4se2fj5uRWlkcnfhtnRLrZ"
+            "spotify": "https://open.spotify.com/track/5AsHmx17yMs3BRqga0eSby"
         },
     },
 }
