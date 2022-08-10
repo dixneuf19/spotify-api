@@ -3,12 +3,9 @@ name: Docker build and release
 on:
   push:
     branches:
-      - "master"
+      - "main"
     tags:
     - 'v*'
-  pull_request:
-    branches:
-      - "master"
 
 env:
   TARGET_PLATFORMS: linux/amd64,linux/arm64
